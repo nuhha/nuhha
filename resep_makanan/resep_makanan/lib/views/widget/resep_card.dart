@@ -1,19 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resep_makanan/views/detail_video.dart';
 
 class ResepCard extends StatelessWidget {
   final String title;
   final String rating;
   final String cookTime;
   final String thumbnailUrl;
+  final String videoUrl;
 
-  const ResepCard(
-      {Key? key,
-      required this.title,
-      required this.rating,
-      required this.cookTime,
-      required this.thumbnailUrl})
-      : super(key: key);
+  const ResepCard({
+    required this.title,
+    required this.rating,
+    required this.cookTime,
+    required this.thumbnailUrl,
+    required this.videoUrl,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,24 +55,34 @@ class ResepCard extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: EdgeInsets.all(5),
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Colors.black.withOpacity(0.4),
-                      borderRadius: BorderRadius.circular(15)),
-                  child: InkWell(
-                    onTap: () => {},
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.play_circle_fill_rounded,
-                          color: Colors.yellow,
-                          size: 18,
-                        ),
-                        SizedBox(width: 7),
-                        Text('Play  video')
-                      ],
+                Visibility(
+                  visible: videoUrl != 'noVideo' ? true : false,
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.4),
+                        borderRadius: BorderRadius.circular(15)),
+                    child: InkWell(
+                      onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailVideo(
+                                      videoUrl: videoUrl,
+                                    )))
+                      },
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.play_circle_fill_rounded,
+                            color: Colors.yellow,
+                            size: 18,
+                          ),
+                          SizedBox(width: 7),
+                          Text('Play  video')
+                        ],
+                      ),
                     ),
                   ),
                 ),

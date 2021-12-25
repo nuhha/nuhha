@@ -7,6 +7,7 @@ class DetailResep extends StatelessWidget {
   final String rating;
   final String totalTime;
   final String description;
+  final String videoUrl;
 
   DetailResep({
     required this.name,
@@ -14,6 +15,7 @@ class DetailResep extends StatelessWidget {
     required this.rating,
     required this.totalTime,
     required this.description,
+    required this.videoUrl,
   });
 
   @override
@@ -33,10 +35,12 @@ class DetailResep extends StatelessWidget {
           child: Column(
             children: [
               ResepCard(
-                  title: name,
-                  cookTime: totalTime,
-                  rating: rating,
-                  thumbnailUrl: images),
+                title: name,
+                cookTime: totalTime,
+                rating: rating,
+                thumbnailUrl: images,
+                videoUrl: videoUrl,
+              ),
               Container(
                 child: Column(
                   children: [

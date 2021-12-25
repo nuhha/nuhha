@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                         title: _resep[index].name,
                         cookTime: _resep[index].totalTime,
                         rating: _resep[index].rating.toString(),
+                        videoUrl: _resep[index].videoUrl,
                         thumbnailUrl: _resep[index].images),
                     onTap: () => {
                       Navigator.push(
@@ -63,6 +64,7 @@ class _HomePageState extends State<HomePage> {
                               rating: _resep[index].rating.toString(),
                               images: _resep[index].images,
                               description: _resep[index].description,
+                              videoUrl: _resep[index].videoUrl,
                             ),
                           ))
                     },
