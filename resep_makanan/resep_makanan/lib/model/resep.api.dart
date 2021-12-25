@@ -19,11 +19,11 @@ class ResepApi {
 // });
 
   static Future<List<Resep>> getResep() async {
-    var url = Uri.https('yummly2.p.rapidapi.com', 'feeds/list',
-        {"limit": "18", "start": "0", "tag": "list.recipe.popular"});
+    var url = Uri.https('tasty.p.rapidapi.com', '/recipes/list',
+        {"from": "0", "size": "20", "tags": "under_30_minutes"});
 
     final response = await http.get(url, headers: {
-      "x-rapidapi-host": "yummly2.p.rapidapi.com",
+      "x-rapidapi-host": "tasty.p.rapidapi.com",
       "x-rapidapi-key": "7f6a6c196emsh1ae84ec86be4607p11d91cjsnf19603e85636",
       "useQueryString": "true"
     });
@@ -32,8 +32,8 @@ class ResepApi {
 
     List _temp = [];
 
-    for (var i in data['feed']) {
-      _temp.add(i['content']['details']);
+    for (var i in data['results']) {
+      _temp.add(i);
     }
     return Resep.resepFromSnapshot(_temp);
   }

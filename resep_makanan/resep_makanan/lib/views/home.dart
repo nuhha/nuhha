@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:resep_makanan/model/resep.api.dart';
 import 'package:resep_makanan/model/resep.dart';
+import 'package:resep_makanan/views/detail.dart';
 import 'package:resep_makanan/views/widget/resep_card.dart';
+import 'package:resep_makanan/views/detail.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -45,11 +47,25 @@ class _HomePageState extends State<HomePage> {
             : ListView.builder(
                 itemCount: _resep.length,
                 itemBuilder: (context, index) {
-                  return ResepCard(
-                    title: _resep[index].name,
-                    cookTime: _resep[index].totalTime,
-                    rating: _resep[index].rating.toString(),
-                    thumbnailUrl: _resep[index].images,
+                  return GestureDetector(
+                    child: ResepCard(
+                        title: _resep[index].name,
+                        cookTime: _resep[index].totalTime,
+                        rating: _resep[index].rating.toString(),
+                        thumbnailUrl: _resep[index].images),
+                    onTap: () => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailResep(
+                              name: _resep[index].name,
+                              totalTime: _resep[index].totalTime,
+                              rating: _resep[index].rating.toString(),
+                              images: _resep[index].images,
+                              description: _resep[index].description,
+                            ),
+                          ))
+                    },
                   );
                 },
               ));
