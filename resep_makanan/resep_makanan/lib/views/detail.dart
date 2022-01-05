@@ -152,7 +152,6 @@ class DetailResep extends StatelessWidget {
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return ListView.builder(
-                                    itemCount : 
                                       shrinkWrap: true,
                                       physics: ScrollPhysics(),
                                       itemBuilder: (context, i) {

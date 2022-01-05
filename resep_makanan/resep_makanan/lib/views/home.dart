@@ -3,7 +3,6 @@ import 'package:resep_makanan/model/resep.api.dart';
 import 'package:resep_makanan/model/resep.dart';
 import 'package:resep_makanan/views/detail.dart';
 import 'package:resep_makanan/views/widget/resep_card.dart';
-import 'package:resep_makanan/views/detail.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -65,6 +64,8 @@ class _HomePageState extends State<HomePage> {
                               images: _resep[index].images,
                               description: _resep[index].description,
                               videoUrl: _resep[index].videoUrl,
+                              instructions: _resep[index].instruction,
+                              sections: _resep[index].sections,
                             ),
                           ))
                     },

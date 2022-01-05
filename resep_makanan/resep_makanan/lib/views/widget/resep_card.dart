@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:resep_makanan/model/resep.dart';
 import 'package:resep_makanan/views/detail_video.dart';
 
 class ResepCard extends StatelessWidget {
@@ -8,6 +9,8 @@ class ResepCard extends StatelessWidget {
   final String cookTime;
   final String thumbnailUrl;
   final String videoUrl;
+  /*  final List<Instructions> instructions;
+  final List<Section> sections; */
 
   const ResepCard({
     required this.title,
@@ -15,6 +18,8 @@ class ResepCard extends StatelessWidget {
     required this.cookTime,
     required this.thumbnailUrl,
     required this.videoUrl,
+    /*   required this.instructions,
+    required this.sections */
   });
 
   @override
