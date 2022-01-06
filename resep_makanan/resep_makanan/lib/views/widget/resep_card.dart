@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:resep_makanan/model/resep.dart';
 import 'package:resep_makanan/views/detail_video.dart';
+import 'package:resep_makanan/views/komentarya.dart';
 
 class ResepCard extends StatelessWidget {
   final String title;
@@ -25,6 +26,7 @@ class ResepCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
       width: MediaQuery.of(context).size.width,
       height: 250,
       decoration: BoxDecoration(
@@ -88,6 +90,30 @@ class ResepCard extends StatelessWidget {
                           Text('Play  video')
                         ],
                       ),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(5),
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.4),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: InkWell(
+                    onTap: () => {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => komentarya()))
+                    },
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.comment,
+                          color: Colors.yellow,
+                          size: 18,
+                        ),
+                        SizedBox(width: 7),
+                        Text('Coment'),
+                      ],
                     ),
                   ),
                 ),

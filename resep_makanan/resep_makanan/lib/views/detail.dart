@@ -75,6 +75,7 @@ class DetailResep extends StatelessWidget {
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
                 ResepCard(
                   title: name,
@@ -88,7 +89,48 @@ class DetailResep extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
                   child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Description",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(description,
+                            style: TextStyle(color: Colors.black),
+                            textAlign: TextAlign.justify),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          "Instruction",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ListView.builder(
+                            itemCount: instructions.length,
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                title: Text(instructions[index].displayText),
+                              );
+                            },
+                          )),
                       TextField(
                           controller: nama,
                           decoration: InputDecoration(
@@ -142,70 +184,35 @@ class DetailResep extends StatelessWidget {
                               child: Text("Delete")),
                         ],
                       ),
-                      Container(
-                        height: 300,
-                        width: double.infinity,
-                        child: SingleChildScrollView(
-                          physics: ScrollPhysics(),
-                          child: StreamBuilder<QuerySnapshot>(
-                              stream: firebase.collection("User").snapshots(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return ListView.builder(
-                                      shrinkWrap: true,
-                                      physics: ScrollPhysics(),
-                                      itemBuilder: (context, i) {
-                                        QueryDocumentSnapshot x =
-                                            snapshot.data!.docs[i];
-                                        return Text(x['nama']);
-                                      });
-                                } else {
-                                  return CircularProgressIndicator();
-                                }
-                              }),
-                        ),
-                      )
                     ],
                   ),
-                )
-
-                /*  Container(
+                ),
+                /*     Container(
                   margin: EdgeInsets.symmetric(horizontal: 22, vertical: 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Description',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                          textAlign: TextAlign.left,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text("Disini adalah Deskripsi",
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                            textAlign: TextAlign.justify),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Instruction',
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                          textAlign: TextAlign.left,
-                        ),
-                      ), */
-
+                  height: 300,
+                  width: double.infinity,
+                  child: SingleChildScrollView(
+                    physics: ScrollPhysics(),
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: firebase.collection("User").snapshots(),
+                        builder: (context, snapshot) {
+                          print(snapshot.data);
+                          if (snapshot.hasData) {
+                            return ListView.builder(
+                                shrinkWrap: true,
+                                physics: ScrollPhysics(),
+                                itemBuilder: (context, i) {
+                                  QueryDocumentSnapshot x =
+                                      snapshot.data!.docs[i];
+                                  return Text(x['nama']);
+                                });
+                          } else {
+                            return CircularProgressIndicator();
+                          }
+                        }),
+                  ),
+                )
+ */
                 /*  Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: ListView.builder(
